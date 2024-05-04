@@ -24,8 +24,8 @@ public class Program {
 
             if (parametroUm < parametroDois){
                 int contagem = parametroDois - parametroUm;
-                for (int i = 0; i <= contagem; i++){
-                    System.out.println("Imprimindo o numero: " + (i+1));
+                for (int i = 1; i <= contagem; i++){
+                    System.out.println("Imprimindo o numero: " + i);
                 }
             }
             else {
