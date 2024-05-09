@@ -1,12 +1,14 @@
 package applicacao;
 
 import entidades.*;
+import excecao.saldoInsuficiente;
 
 import java.util.Locale;
+
 import java.util.Scanner;
 
 public class Programa {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws saldoInsuficiente {
         Locale.setDefault(Locale.US);
         Scanner sc = new Scanner(System.in);
 
@@ -30,11 +32,18 @@ public class Programa {
         if (aprovacao == 's'){
             System.out.print("Valor da transferencia: ");
             double transferencia = sc.nextDouble();
-            cc.transferir(transferencia, poupanca);
+            try {
+                cc.verificarSaldo(transferencia);
+                cc.transferir(transferencia, poupanca);
+            }
+            catch (saldoInsuficiente e){
+                System.out.println("Saldo insuficiente");
+            }
         }
 
         cc.imprimirExtrato();
         poupanca.imprimirExtrato();
 
     }
+
 }
